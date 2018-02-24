@@ -14,7 +14,25 @@ class PrimeiroscrapyPipeline(object):
         # Após um item ser coletado pelo spider e enviado o Item Pipeline que fica dentro do arquivo pipelines.py. É nessa parte do projeto 
         # que fazemos a limpeza dos dados, validações, checar duplicidade e armazenar os dados no banco de dados.   
 
-        if item['conteudo'] == "":
-            DropItem(item)
+        categorias_validas = [
+            'economia',
+            'carros',
+            'ciencia-e-saude',
+            'educacao',
+            'mundo',
+            'musica',
+            'natureza',
+            'planeta-bizarro',
+            'politica',
+            'tecnologia',
+            'turismo-e-viagem'
+        ]
+
+        if item['categoria'] in categorias_validas:
+            if item['conteudo'] != "": 
+                return item
+            else:
+                DropItem(item)
         else:
-            return item
+            DropItem(item)
+            
