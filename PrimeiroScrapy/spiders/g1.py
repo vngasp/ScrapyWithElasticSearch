@@ -34,7 +34,7 @@ class G1Spider(CrawlSpider):
     # e o parametro "follow" para ele busque outras urls dentro da pagina que esta sendo acessada.
     # Assim garantimos que nosso spider não vai deixa passar nada. 
     rules = (
-        Rule(LinkExtractor(allow=[]), callback=('parse_item'),follow=False),
+        Rule(LinkExtractor(allow=[]), callback=('parse_item'),follow=True),
     )
 
 
@@ -74,12 +74,9 @@ class G1Spider(CrawlSpider):
         # ------- Código
         # scrapy shell <link da pagina>
 
-        url         = response.url
-        categoria   = response.url.split("/")[3]
-        conteudo    = hrx.xpath('normalize-space(//article)').extract_first()
+        item['url']         = response.url
+        item['categoria']   = response.url.split("/")[3]
+        item['conteudo']    = hrx.xpath('normalize-space(//article)').extract_first()
 
-        yield{
-            'url': url,
-            'categoria': categoria,
-            'conteudo': conteudo
-        }
+
+        yield item 

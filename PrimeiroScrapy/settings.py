@@ -27,7 +27,9 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+#DOWNLOAD_DELAY = 1
+
+
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -64,9 +66,19 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'PrimeiroScrapy.pipelines.PrimeiroscrapyPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'PrimeiroScrapy.pipelines.PrimeiroscrapyPipeline': 10,
+    'scrapyelasticsearch.scrapyelasticsearch.ElasticSearchPipeline': 20,
+
+}
+
+ELASTICSEARCH_SERVER            = 'localhost'
+ELASTICSEARCH_PORT              = 9200
+ELASTICSEARCH_INDEX             = 'target'
+ELASTICSEARCH_TYPE              = 'noticias'
+ELASTICSEARCH_UNIQ_KEY          = 'url'
+ELASTICSEARCH_BUFFER_LENGTH     = 1
+
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
