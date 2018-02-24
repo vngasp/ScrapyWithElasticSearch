@@ -27,7 +27,7 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 1
+DOWNLOAD_DELAY = 10
 
 
 # The download delay setting will honor only one of:
@@ -77,7 +77,7 @@ ELASTICSEARCH_PORT              = 9200
 ELASTICSEARCH_INDEX             = 'target'
 ELASTICSEARCH_TYPE              = 'noticias'
 ELASTICSEARCH_UNIQ_KEY          = 'url'
-ELASTICSEARCH_BUFFER_LENGTH     = 1
+ELASTICSEARCH_BUFFER_LENGTH     = 100
 
 
 # Enable and configure the AutoThrottle extension (disabled by default)
