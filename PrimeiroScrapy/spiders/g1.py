@@ -78,5 +78,5 @@ class G1Spider(CrawlSpider):
         item['categoria']   = response.url.split("/")[3]
         item['conteudo']    = hrx.xpath('normalize-space(//article)').extract_first()
 
-
+        
         yield item 
